@@ -1,37 +1,27 @@
-# Hat vs Shoe — Transfer Learning Classifier
+# Classificatore Cappello vs Scarpa — Transfer Learning con MobileNetV2
 
-Binary image classifier that distinguishes **hats from shoes** using **Transfer Learning** with MobileNetV2 pre-trained on ImageNet.
+Classificatore binario di immagini che distingue **cappelli da scarpe** usando il **Transfer Learning** con MobileNetV2 pre-addestrato su ImageNet.
 
-## What it does
+## Cosa fa
 
-- Loads a custom dataset of hat/shoe images from Google Drive
-- Uses **MobileNetV2** (frozen base) as a feature extractor
-- Adds a custom classification head (GlobalAveragePooling → Dense → Sigmoid)
-- Fine-tunes top layers with `Adam` optimizer
-- Achieves high accuracy with minimal training data thanks to pre-trained features
-- Evaluates on a held-out test set with accuracy and loss curves
+- Caricamento e preparazione del dataset di immagini
+- Fine-tuning di MobileNetV2 (pesi ImageNet congelati + testa di classificazione custom)
+- Addestramento e valutazione del modello
+- Predizione su nuove immagini
 
-## Architecture
+## Come si usa
 
-```
-MobileNetV2 (frozen, ImageNet weights)
-    └─ GlobalAveragePooling2D
-    └─ Dense(128, ReLU)
-    └─ Dropout(0.3)
-    └─ Dense(1, Sigmoid)   ← binary output
+```bash
+pip install tensorflow numpy matplotlib
+python classifier.py
 ```
 
-## Tech stack
+## Tecnologie
 
-- Python 3
-- `TensorFlow` / `Keras` — model definition and training
-- `MobileNetV2` — pre-trained backbone
-- `matplotlib` — training curve visualization
+- `TensorFlow / Keras` — framework deep learning
+- `MobileNetV2` — rete pre-addestrata su ImageNet
+- Transfer Learning + Fine-tuning
 
-## Usage
+## Tag
 
-Open `notebook.ipynb` in Google Colab (GPU recommended). Ensure the dataset folder is accessible via the provided Drive path.
-
-## Topics
-
-`python` `tensorflow` `keras` `transfer-learning` `mobilenetv2` `image-classification` `deep-learning`
+`python` `tensorflow` `transfer-learning` `mobilenetv2` `image-classification` `deep-learning` `keras`
